@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  if (!user)
+    h1 Вы не зашли в свой профиль.
+    a(href="/login") Вход
+    br
+    a(href="/register") Регистрация
+  if (user)
+    a(href="/") Пользователи сайта
+    h1 Ваш профиль
+    img(src="#{user.photo.originalname}" class="img-thumbnail" alt="#{user.photo.originalname}" width="304" height="236")
+    form(method="post" action="/update" enctype="multipart/form-data")
+        label(for="") Select a photo to upload:
+        input(type="file"  required class="btn btn-default" name="photo")
+        input(type="submit" class="btn btn-success")
+        br
+
+    p Ты вот это: #{user.username}
+    p А вот твой имеил: #{user.e_mail}
+    p А вот твой id: #{user._id}
+    a(href="/logout") Выйти

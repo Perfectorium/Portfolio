@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    if (!user)
+        a(href="/login") Войдите в свой профиль.
+    if (user)
+        a(href="/profile") Profile
+        br
+        form(class="form-search pull-right" action="/search" method="get")
+            input(type="search" class="input-medium search-query" placeholder="Поиск пользователя") 
+            button(type="submit" class="btn") Search
+          //- input.form-control(type='text', name="e_mail", placeholder='Введи свой e-mail ').form-group
+        h1 Пользователи Сайта
+        table.table.table-striped
+            thead
+                tr
+                    th Photo
+                    th Name
+                    th Mail
+            tbody
+            - for user in users
+                tr
+                    td
+                        a(href="user/#{user.username}")
+                            img(src="#{user.photo.originalname}" width="50" height="50")
+                    td
+                        a(href="user/#{user.username}")=user.username
+                    td=user.e_mail
+    
+    

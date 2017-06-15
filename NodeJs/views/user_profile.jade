@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  if (!user)
+    h1 Вы не зашли в свой профиль.
+    a(href="/login") Вход
+    br
+    a(href="/register") Регистрация
+  if (user)
+    a(href="/") Главная
+    br
+    a(href="/profile") Профиль
+    h1  #{person.username}
+    p #{person.e_mail}
+    img(src="/#{person.photo.originalname}" alt="#{person.photo.originalname}" width="304" height="304")
